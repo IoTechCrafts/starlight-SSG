@@ -11,14 +11,22 @@ export default defineConfig({
 			sidebar: [
 				{
 					label: 'Guides',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
-					],
+					autogenerate: { directory: 'guides' },
 				},
 				{
 					label: 'Reference',
 					autogenerate: { directory: 'reference' },
+				},
+				{
+					label: 'Blog',
+					items: [
+						{ label: '📚 All Posts Archive', slug: 'blog/index' },
+						{ label: 'First Post', slug: 'blog/first-post' },
+						{ label: 'Second Post', slug: 'blog/second-post' },
+						{ label: 'Third Post', slug: 'blog/third-post' },
+						{ label: 'Fourth Post', slug: 'blog/fourth-post' },
+						{ label: 'Fifth Post', slug: 'blog/fifth-post' },
+					],
 				},
 			],
 		}),

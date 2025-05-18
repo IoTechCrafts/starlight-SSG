@@ -1,0 +1,27 @@
+---
+title: Blog Archive
+description: All blog posts ever written
+---
+
+import { getCollection } from 'astro:content';
+
+# Blog Archive
+
+Here's a complete list of all our blog posts, from newest to oldest:
+
+{(async () => {
+  const posts = await getCollection('docs', ({ id }) => {
+    return id.startsWith('blog/') && !id.endsWith('index.mdx');
+  });
+
+  return posts
+    .sort((a, b) => new Date(b.data.date) - new Date(a.data.date))
+    .map(post => (
+      <div key={post.slug}>
+        <a href={`/docs/${post.slug}`}>{post.data.title}</a>
+        {' '}
+        ({new Date(post.data.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })})
+        {post.data.description && ` - ${post.data.description}`}
+      </div>
+    ));
+})()}
